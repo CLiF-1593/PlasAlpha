@@ -1,2 +1,2 @@
 # PlasmidDataAnalyzer
- The project is to verify that the data is inserted properly in the recombinant plasmid
+ This project is to verify that the data is inserted properly in the recombinant plasmid

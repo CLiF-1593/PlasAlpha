@@ -140,8 +140,6 @@ public:
 	}
 };
 
-vector<ReturnType> cache;
-
 // Bottom-up DP
 ReturnType EditDistance(DNA &dna1, DNA &dna2, int limit) {
 	int size1 = dna1.size();

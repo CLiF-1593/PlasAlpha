@@ -18,6 +18,22 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="DNA.h" />
+    <ClInclude Include="FileIO.h" />
+    <ClInclude Include="Print.h" />
+    <ClInclude Include="RestrictionEnzyme.h" />
+    <ClInclude Include="Plasmid.h" />
+    <ClInclude Include="ProtableFileDialogs.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DNA.cpp" />
+    <ClCompile Include="FileIO.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Print.cpp" />
+    <ClCompile Include="RestrictionEnzyme.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -74,7 +90,7 @@
     <IncludePath>D:\KSA\R&amp;E\DDDS_RandomAccessSystem\DDDS System\DNA_Editor\DNA_Editor;D:\KSA\R&amp;E\DDDS_RandomAccessSystem\DDDS System\DNA_Editor;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\KSA\R&amp;E\DDDS_RandomAccessSystem\DDDS System\DNA_Editor\DNA_Editor;D:\KSA\R&amp;E\DDDS_RandomAccessSystem\DDDS System\DNA_Editor;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -134,16 +150,6 @@
       <StackReserveSize>80000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="DNA.cpp" />
-    <ClCompile Include="FileIO.cpp" />
-    <ClCompile Include="Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DNA.h" />
-    <ClInclude Include="FileIO.h" />
-    <ClInclude Include="Plasmid.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

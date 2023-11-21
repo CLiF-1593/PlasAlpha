@@ -1,0 +1,42 @@
+[Info]
+> Original DNA : 1.txt.dna
+> Plasmid Info : pCES208 Seq.txt
+> Restriction Enzyme Info : [1st] PstI (CTGCAG) / [2nd] BamHI (GGATCC) 
+> Plasmid DNA (fwd) : Test/HST04_Lab1_1_C2_pCES208_Sanger_F.txt
+> Plasmid DNA (rev) : Test/HST04_Lab1_1_C2_pCES208_Sanger_R.txt
+
+[Result]
+> Original Nucleotide Number : 263
+> Same Nucleotide Number : 241
+> Correctness : 91.634981%
+> Beta PDF Correctness : 95.667793%
+> Availability : Enable
+
+> Sequence
+Label           :                                                                                          <PstI><------------------------
+Origin Plasmid  : GCGCAATTAACCCTCACTAAAGGGAACAAAAGCTGGGTACCGGGCCCCCCCTCGAGGTCGACGGTATCGATAAGCTTGATATCGAATTCCTGCAGGTGCCAACTGAGTAAATAAATTAGC
+Forward Plasmid : ACCCAAGTCATACTCACTAA_GGGA_CAAA_GCTGGGTACCGGGCCCCCCCTCGAGGTCGACGGTATCGATAAGCTTGATATCGAATTCCTGCAGGTGCCAACTGAGTAAATAAATTAGC
+Reverse Plasmid : GCGCAATTAACCCTCACTAAAGGGAACAAAAGCTGGGTACCGGGCCCCCCCTCGAGGTCGACGGTATCGATAAGCTTGATATCGAATTCCTGCAGGTGCCAACTGAGTAAATAAATTAGC
+Matching Result : ^ ^   ^ ^ ^^        ^    ^    ^                                                                                         
+Specific Result : \X\XXX\X\X\\XXXXXXXX\XXXX\XXXX\XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+Label           : ------Data-------------------------------><BamHI>                                                                       
+Origin Plasmid  : GTCCAGTATCACGCGTCTGACTGGTCAACTGTTCGATCGTTAGGATCCACTAGTTCTAGAGCGGCCGCCACCGCGGTGGAGCTCCAATTCGCCCTATAGTGAGTCGTATTACGCGCGGTG
+Forward Plasmid : GTCCAGTATCACGCGTCTGACTGGTCAACTGTTCGATCGTTAGGATCCACTAGTTCTAGAGCGGCCGCCACCGCGGTGGAGCTCCAATTCGCCCTATAGTGAGTCGTATTACGCGCGGTG
+Reverse Plasmid : GTCCAGTATCACGCGTCTGACTGGTCAACTGTTCGATCGTTAGGATCCACTAGTTCTAGAGCGGCCGCCACCGCGGTGGAGCTCCAATTCGCCCTATAGTGAGTCGTAT_ACGCGCG_T_
+Matching Result :                                                                                                              ^       ^ ^
+Specific Result : XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/XXXXXXX/X/
+
+Label           :                        
+Origin Plasmid  : ACCACCATTTGCCCCATATCACC
+Forward Plasmid : ACCACCATTTGCCCCATATCACC
+Reverse Plasmid : ACCAGCAT__GCTCCG_A_CGGG
+Matching Result :     ^   ^^  ^  ^^ ^ ^^^
+Specific Result : XXXX/XXX//XX/XX//X/X///
+
+
+
+===================================================
+
+
+

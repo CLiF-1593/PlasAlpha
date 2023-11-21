@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <FileIO.h>
+#include "FileIO.h"
 #include "DNA.h"
+#include "RestrictionEnzyme.h"
+#include "Print.h"
+#include <windows.h>
 #include <assert.h>
-#include "Plasmid.h"
 using namespace std;
 
 #define PLASMID_NUM 2
@@ -130,30 +132,102 @@ double betaPDF(double x, double alpha, double beta) {
 }
 
 using namespace std;
-int main() {
+int main(int argc, char* argv[]) {
+	SetConsoleDisplayMode(GetStdHandle(STD_OUTPUT_HANDLE), CONSOLE_FULLSCREEN_MODE, 0);
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, 15);
 	cout << "[ DNA Plasmid Data Part Extraction System ]" << endl << endl;
-	cout << "> Plasmid Data Part Extraction System" << endl;
-	cout << "  ¤¤Random Access of DNA Digital Data Storage System Using Restriction Modification System" << endl << endl;
-	cout << "> 2023 KSA R&E" << endl << endl << endl;
+	SetConsoleTextAttribute(hConsole, 7);
+	cout << "> 2023 KSA R&E & IDEV Project" << endl;
+	cout << "> This program was developed to verify that the data were inserted correctly into the recombinant plasmid." << endl << endl;
+
+	if (argc == 2) {
+		string text = FileIO::ReadFileData(argv[1]);
+		Print(text);
+		system("Pause");
+		return 0;
+	}
+
 	system("Pause");
 
 	srand((unsigned)time(NULL));
 	cout << endl;
 
+	SetConsoleTextAttribute(hConsole, 15);
 	cout << "> Select the Plasmid Files" << endl;
-	vector<string> plasmid_path_set = FileIO::GetFileNames();
+	vector<string> org_plasmid_path_set = FileIO::GetFileNames("Open Plasmid File");
+	if (org_plasmid_path_set.empty()) return 0;
+	string org_pasmid_name;
+	string org_plasmid_path = org_plasmid_path_set.front();
+	cout << " ¤¤ Path : ";
+	SetConsoleTextAttribute(hConsole, 14);
+	cout << org_plasmid_path << endl;
+	SetConsoleTextAttribute(hConsole, 15);
+	string str = FileIO::ReadFileData(org_plasmid_path);
+	DNA plasmid_seq;
+	for (int j = 0; j < str.size(); j++) {
+		if (str[j] == 'A') plasmid_seq.push_back(A);
+		else if (str[j] == 'T') plasmid_seq.push_back(T);
+		else if (str[j] == 'G') plasmid_seq.push_back(G);
+		else if (str[j] == 'C') plasmid_seq.push_back(C);
+	}
+	while (org_plasmid_path.back() != '\\') {
+		org_pasmid_name += org_plasmid_path.back();
+		org_plasmid_path.pop_back();
+	}
+	reverse(org_pasmid_name.begin(), org_pasmid_name.end());
+
+	cout << "> Input Restriction Enzyme Type (1st) : ";
+	string enzyme1;
+	SetConsoleTextAttribute(hConsole, 10);
+	cin >> enzyme1;
+	SetConsoleTextAttribute(hConsole, 15);
+	string enzyme1_seq = GetRestrictionEnzymeSequence(enzyme1);
+
+	cout << "> Input Restriction Enzyme Type (2nd) : ";
+	string enzyme2;
+	SetConsoleTextAttribute(hConsole, 10);
+	cin >> enzyme2;
+	SetConsoleTextAttribute(hConsole, 15);
+	string enzyme2_seq = GetRestrictionEnzymeSequence(enzyme2);
+
+	int pos;
+	pos = plasmid_seq.str().find(enzyme1_seq);
+	if (pos == string::npos) {
+		SetConsoleTextAttribute(hConsole, 12);
+		cout << "> Error : The plasmid file does not contain the first restriction enzyme." << endl;
+		SetConsoleTextAttribute(hConsole, 15);
+		system("Pause");
+		return 0;
+	}
+	string plasmid_front_seq = plasmid_seq.str().substr(0, pos + enzyme1_seq.size());
+	pos = plasmid_seq.str().find(enzyme2_seq);
+	if (pos == string::npos) {
+		SetConsoleTextAttribute(hConsole, 12);
+		cout << "> Error : The plasmid file does not contain the second restriction enzyme." << endl;
+		SetConsoleTextAttribute(hConsole, 15);
+		system("Pause");
+		return 0;
+	}
+	string plasmid_back_seq = plasmid_seq.str().substr(pos);
+
+	cout << "> Select the Original DNA Files (Only Data Sequence)" << endl;
+	vector<string> origin_path_set = FileIO::GetFileNames("Open Original DNA Files");
+	if (origin_path_set.empty()) return 0;
+
+	cout << "> Select the Sequencing Result Files (Recombinant Plasmid)" << endl;
+	vector<string> plasmid_path_set = FileIO::GetFileNames("Open Recombinant Plasmid File");
 	if (plasmid_path_set.empty()) return 0;
 
-	cout << "> Select the Original DNA Files" << endl;
-	vector<string> origin_path_set = FileIO::GetFileNames();
-	if (origin_path_set.empty()) return 0;
-	
 	string plasmid_name_fwd;
 	string plasmid_name_rev;
 	string origin_name;
 
 	if (origin_path_set.size() * PLASMID_NUM != plasmid_path_set.size()) {
+		SetConsoleTextAttribute(hConsole, 12);
 		cout << "> Error: The number of plasmid files is not correct." << endl;
+		SetConsoleTextAttribute(hConsole, 15);
+		system("Pause");
 		return 0;
 	}
 
@@ -161,11 +235,11 @@ int main() {
 	string plasmid_path_rev;
 	string origin_path;
 
-
 	string output = "";
+	string tot_output = "";
 	cout << endl;
 
-	for (int i = 0; i < plasmid_path_set.size(); i+= 2) {
+	for (int i = 0; i < plasmid_path_set.size(); i += 2) {
 		if (i % PLASMID_NUM == 0) {
 			origin_name.clear();
 			origin_path = origin_path_set[i / PLASMID_NUM];
@@ -195,13 +269,16 @@ int main() {
 		reverse(plasmid_name_rev.begin(), plasmid_name_rev.end());
 		plasmid_path_rev = plasmid_path_set[i + 1];
 
-		cout << "> Original DNA : " << origin_name << endl;
-		cout << "> Plasmid DNA (fwd) : " << plasmid_name_fwd << endl;
-		cout << "> Plasmid DNA (rev) : " << plasmid_name_rev << endl;
-
+		output += "[Info]\n";
 		output += "> Original DNA : " + origin_name + "\n";
+		output += "> Plasmid Info : " + org_pasmid_name + "\n";
+		output += "> Restriction Enzyme Info : [1st] " + enzyme1 + " (" + enzyme1_seq + ") / [2nd] " + enzyme2 + " (" + enzyme2_seq + ") " + "\n";
 		output += "> Plasmid DNA (fwd) : " + plasmid_name_fwd + "\n";
-		output += "> Plasmid DNA (rev) : " + plasmid_name_rev + "\n";
+		output += "> Plasmid DNA (rev) : " + plasmid_name_rev + "\n\n";
+
+		Print(output);
+		tot_output += output;
+		output.clear();
 
 		DNA origin, plasmid_fwd, plasmid_rev;
 
@@ -296,19 +373,22 @@ int main() {
 
 		string label = "";
 
+		int labeling_check = 0;
 		for (int index = 0, j = 0; j < entire_origin.size(); j++) {
 			int prev_size = label.size();
 			if (entire_origin[j] != X) {
+				int bbb = begin, eee = end;
 				int begin, end;
-				begin = plasmid_front_seq.size() - PstI_seq.size();
+				begin = plasmid_front_seq.size() - enzyme1_seq.size();
 				end = plasmid_front_seq.size() - 1;
 				if (index == begin) label += "<";
 				if (index == end) {
 					int cnt = 0;
 					while (label.back() != '<') cnt++, label.pop_back();
-					label.insert(label.end(), floor(((double)cnt - (double)string("PstI").size()) / 2.0), '-');
-					label += "PstI";
-					label.insert(label.end(), round(((double)cnt - (double)string("PstI").size()) / 2.0), '-');
+					if (label.size() >= bbb) labeling_check++;
+					label.insert(label.end(), floor(((double)cnt - (double)enzyme1.size()) / 2.0), '-');
+					label += enzyme1;
+					label.insert(label.end(), round(((double)cnt - (double)enzyme1.size()) / 2.0), '-');
 					label += ">";
 				}
 				begin = plasmid_front_seq.size();
@@ -323,19 +403,20 @@ int main() {
 					label += ">";
 				}
 				begin = plasmid_front_seq.size() + data.size();
-				end = plasmid_front_seq.size() + data.size() + BamHI_seq.size() - 1;
+				end = plasmid_front_seq.size() + data.size() + enzyme2_seq.size() - 1;
 				if (index == begin) label += "<";
 				if (index == end) {
 					int cnt = 0;
 					while (label.back() != '<') cnt++, label.pop_back();
-					label.insert(label.end(), NotNegative(floor(((double)cnt - (double)(string("BamHI").size())) / 2.0)), '-');
-					label += "BamHI";
-					label.insert(label.end(), NotNegative(round(((double)cnt - (double)(string("BamHI").size())) / 2.0)), '-');
+					label.insert(label.end(), NotNegative(floor(((double)cnt - (double)(enzyme2.size())) / 2.0)), '-');
+					label += enzyme2;
+					label.insert(label.end(), NotNegative(round(((double)cnt - (double)(enzyme2.size())) / 2.0)), '-');
 					label += ">";
+					if (label.size() <= eee) labeling_check++;
 				}
 				index++;
 			}
-			if(label.size() == prev_size) label += " ";
+			if (label.size() == prev_size) label += " ";
 		}
 
 		label = label.substr(begin, end - begin);
@@ -353,18 +434,21 @@ int main() {
 
 		}
 
-		cout << "> Nucleotide Matching : " << same_nucleotide_num << " / " << previous_nucleotide_num << endl;
-		cout << "> Correctness : " << (double)same_nucleotide_num / (double)previous_nucleotide_num * 100 << "%" << endl;
-		cout << "> Beta PDF Correctness : " << pdf_correctness * 100.0 << "%" << endl << endl;
+		bool enable = labeling_check == 2;
+		for (int i = 0; i < label.size() && enable; i++) {
+			if (label[i] != ' ' && result[i] != ' ') {
+				enable = false;
+			}
+		}
 
+		output += "[Result]\n";
 		output += "> Original Nucleotide Number : " + to_string(previous_nucleotide_num) + "\n";
 		output += "> Same Nucleotide Number : " + to_string(same_nucleotide_num) + "\n";
 		output += "> Correctness : " + to_string((double)same_nucleotide_num / (double)previous_nucleotide_num * 100) + "%\n";
-		output += "> Beta PDF Correctness : " + to_string(pdf_correctness * 100.0) + "%\n\n";
+		output += "> Beta PDF Correctness : " + to_string(pdf_correctness * 100.0) + "%\n";
+		output += "> Availability : " + (string)(enable ? "Enable" : "Disable") + "\n\n";
 
-		cout << "> Result" << endl;
-
-		output += "> Result\n";
+		output += "> Sequence\n";
 
 		string plasmid_fwd_str = core_plasmid_fwd.str();
 		string plasmid_rev_str = core_plasmid_rev.str();
@@ -374,7 +458,7 @@ int main() {
 		while (index < plasmid_fwd_str.size()) {
 			int begin = index;
 			int end = index + PRINT_NUM;
-			if(end > plasmid_fwd_str.size()) end = plasmid_fwd_str.size();
+			if (end > plasmid_fwd_str.size()) end = plasmid_fwd_str.size();
 			string str_ = label.substr(begin, end - begin);
 			string str0 = origin_str.substr(begin, end - begin);
 			string str1 = plasmid_fwd_str.substr(begin, end - begin);
@@ -382,12 +466,6 @@ int main() {
 			string str3 = result.substr(begin, end - begin);
 			string str4 = specific_result.substr(begin, end - begin);
 			//string str3 = origin_str.substr(begin, end - begin);
-			cout << "Label           : " << str_ << endl;
-			cout << "Origin Plasmid  : " << str0 << endl;
-			cout << "Forward Plasmid : " << str1 << endl;
-			cout << "Reverse Plasmid : " << str2 << endl;
-			cout << "Matching Result : " << str3 << endl;
-			cout << "Specific Result : " << str4 << endl << endl;
 
 			output += "Label           : " + str_ + "\n";
 			output += "Origin Plasmid  : " + str0 + "\n";
@@ -398,18 +476,22 @@ int main() {
 			index = end;
 		}
 
+		Print(output);
+		tot_output += output;
+		output.clear();
+
 		cout << endl << endl;
 		cout << "===================================================";
 		cout << endl << endl;
 
-		output += "\n\n";
-		output += "===================================================\n\n";
-		output += "\n\n";
+		tot_output += "\n\n";
+		tot_output += "===================================================\n\n";
+		tot_output += "\n\n";
 
 		if ((i + 2) % PLASMID_NUM == 0) {
-			origin_path += "_plasmid_result.txt";
-			FileIO::SaveFileData(origin_path, output);
-			output.clear();
+			origin_path += "_plasmid_result.rpar"; //recombinant plasmid analysis report
+			FileIO::SaveFileData(origin_path, tot_output);
+			tot_output.clear();
 			cout << "Saved : " << origin_path << endl;
 
 			cout << endl << endl;

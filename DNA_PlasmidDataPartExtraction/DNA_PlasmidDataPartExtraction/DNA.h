@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <string>
-#include <ezpwd/rs>
 #include "Config.h"
 
 
@@ -17,8 +16,6 @@
 
 #define CANDIDATE_RATIO 0.3
 #define MAXIMUM_CALCULATING_TIME 30000
-
-using DataRS = ezpwd::RS<255, 255 - BPSToByte(DATA_PARITY_SIZE)>;
 
 class DNA : public std::vector<Nucleotide> {
 public:

@@ -5,13 +5,21 @@
 #include <atlstr.h>
 #include <shlobj_core.h>
 #include <filesystem>
-#include <ProtableFileDialogs.h> //For Open Files with Multiplatforms
+#include "ProtableFileDialogs.h" //For Open Files with Multiplatforms
 
 using namespace FileIO;
 using namespace std;
 
-vector<string> FileIO::GetFileNames() {
-	auto selection = pfd::open_file("Open File", "", { "All Files", "*" }, pfd::opt::force_path | pfd::opt::multiselect).result();
+vector<string> FileIO::GetFileNames(string title) {
+	auto selection = pfd::open_file(title, "", { 
+		"Plain Sequence Format (*.txt, *.dna, *.seq, *.plasmid)", "*.txt *.dna *.seq *.plasmid",
+		"All Files (*.)", "*" 
+	}, pfd::opt::force_path | pfd::opt::multiselect).result();
+	return selection;
+}
+
+string FileIO::GetSaveFolderPath(string title) {
+	auto selection = pfd::select_folder(title).result();
 	return selection;
 }
 

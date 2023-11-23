@@ -497,10 +497,9 @@ int main(int argc, char* argv[]) {
 		if ((i + 2) % PLASMID_NUM == 0) {
 			string path = origin_path + "_plasmid_result.rpar"; //recombinant plasmid analysis report
 			FileIO::SaveFileData(path, tot_output);
-			tot_output.clear();
 			cout << "Saved : " << path << endl;
 
-			string path = origin_path + "_plasmid_result.txt"; //text
+			path = origin_path + "_plasmid_result.txt"; //text
 			FileIO::SaveFileData(path, tot_output);
 			tot_output.clear();
 			cout << "Saved : " << path << endl;

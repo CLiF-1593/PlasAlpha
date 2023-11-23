@@ -8,7 +8,7 @@
 #include <assert.h>
 using namespace std;
 
-#define PLASMID_NUM 2
+#define PLASMID_NUM (2 * text_num)
 #define PRINT_NUM 120
 
 #define CHECKING_DELTA 32
@@ -152,6 +152,12 @@ int main(int argc, char* argv[]) {
 
 	srand((unsigned)time(NULL));
 	cout << endl;
+
+	SetConsoleTextAttribute(hConsole, 15);
+	cout << "> Cloning Samples Number : ";
+	SetConsoleTextAttribute(hConsole, 14);
+	int text_num;
+	cin >> text_num;
 
 	SetConsoleTextAttribute(hConsole, 15);
 	cout << "> Select the Plasmid Files" << endl;
@@ -489,14 +495,20 @@ int main(int argc, char* argv[]) {
 		tot_output += "\n\n";
 
 		if ((i + 2) % PLASMID_NUM == 0) {
-			origin_path += "_plasmid_result.rpar"; //recombinant plasmid analysis report
-			FileIO::SaveFileData(origin_path, tot_output);
+			string path = origin_path + "_plasmid_result.rpar"; //recombinant plasmid analysis report
+			FileIO::SaveFileData(path, tot_output);
 			tot_output.clear();
-			cout << "Saved : " << origin_path << endl;
+			cout << "Saved : " << path << endl;
+
+			string path = origin_path + "_plasmid_result.txt"; //text
+			FileIO::SaveFileData(path, tot_output);
+			tot_output.clear();
+			cout << "Saved : " << path << endl;
 
 			cout << endl << endl;
 			cout << "===================================================";
 			cout << endl << endl;
 		}
 	}
+	system("pause");
 }

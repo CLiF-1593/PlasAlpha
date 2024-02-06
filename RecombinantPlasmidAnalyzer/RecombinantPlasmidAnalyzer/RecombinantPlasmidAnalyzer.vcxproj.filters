@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Windows">
+      <UniqueIdentifier>{aa879010-5712-4ce5-b952-447d7d055c04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Windows">
+      <UniqueIdentifier>{13337806-c33d-4a22-b643-a96b6ad6b46a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Libraries">
+      <UniqueIdentifier>{835773d9-de60-4844-910e-e31f429e45a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Libraries">
+      <UniqueIdentifier>{2140d2a5-1b34-41b5-9ef8-c27476b67fa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Windows\CreateCollection_Widgets">
+      <UniqueIdentifier>{7375d234-a629-4b60-bc0b-66200f4e2696}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Form Files\CreateCollection_Widgets">
+      <UniqueIdentifier>{ce6feff0-a959-4875-9c82-98651dba11a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Windows\CreateCollection_Widgets">
+      <UniqueIdentifier>{d7106c06-f6be-40a4-b224-73347fe31bc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Files\Specialized_Widgets">
+      <UniqueIdentifier>{2c2e0d3a-94c3-4c26-b5e1-cf13a0c513f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Windows\Specialized_Widgets">
+      <UniqueIdentifier>{45ee9259-5558-40d0-90a9-ca91f9562f21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Windows\Specialized_Widgets">
+      <UniqueIdentifier>{15a357f0-79fc-43d2-b10e-9d4051424206}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="TitleWindow.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Source Files\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleWindow.cpp">
+      <Filter>Source Files\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="FileIO.cpp">
+      <Filter>Source Files\Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>Source Files\Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateWindow.cpp">
+      <Filter>Source Files\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateCollector_Analyzer_Widget.cpp">
+      <Filter>Source Files\Windows\CreateCollection_Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateCollection_ColonySelector_Widget.cpp">
+      <Filter>Source Files\Windows\CreateCollection_Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateCollection_LinkerSelector_Widget.cpp">
+      <Filter>Source Files\Windows\CreateCollection_Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateCollection_VectorSelector_Widget.cpp">
+      <Filter>Source Files\Windows\CreateCollection_Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="DragAndDrop_Screen.cpp">
+      <Filter>Source Files\Windows\Specialized_Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="CollectionGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DNA.cpp">
+      <Filter>Source Files\Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateCollection_DataSelector_Widget.cpp">
+      <Filter>Source Files\Windows\CreateCollection_Widgets</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="MainWindow.h">
+      <Filter>Header Files\Windows</Filter>
+    </QtMoc>
+    <QtMoc Include="TitleWindow.h">
+      <Filter>Header Files\Windows</Filter>
+    </QtMoc>
+    <QtMoc Include="CreateWindow.h">
+      <Filter>Header Files\Windows</Filter>
+    </QtMoc>
+    <QtMoc Include="CreateCollector_Analyzer_Widget.h">
+      <Filter>Header Files\Windows\CreateCollection_Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="CreateCollection_ColonySelector_Widget.h">
+      <Filter>Header Files\Windows\CreateCollection_Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="CreateCollection_DataSelector_Widget.h">
+      <Filter>Header Files\Windows\CreateCollection_Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="CreateCollection_LinkerSelector_Widget.h">
+      <Filter>Header Files\Windows\CreateCollection_Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="CreateCollection_VectorSelector_Widget.h">
+      <Filter>Header Files\Windows\CreateCollection_Widgets</Filter>
+    </QtMoc>
+    <QtMoc Include="DragAndDrop_Screen.h">
+      <Filter>Header Files\Windows\Specialized_Widgets</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="CreateWindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="MainWindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="TitleWindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="CreateCollection_ColonySelector_Widget.ui">
+      <Filter>Form Files\CreateCollection_Widgets</Filter>
+    </QtUic>
+    <QtUic Include="CreateCollection_DataSelector_Widget.ui">
+      <Filter>Form Files\CreateCollection_Widgets</Filter>
+    </QtUic>
+    <QtUic Include="CreateCollection_LinkerSelector_Widget.ui">
+      <Filter>Form Files\CreateCollection_Widgets</Filter>
+    </QtUic>
+    <QtUic Include="CreateCollection_VectorSelector_Widget.ui">
+      <Filter>Form Files\CreateCollection_Widgets</Filter>
+    </QtUic>
+    <QtUic Include="CreateCollector_Analyzer_Widget.ui">
+      <Filter>Form Files\CreateCollection_Widgets</Filter>
+    </QtUic>
+    <QtUic Include="DragAndDrop_Screen.ui">
+      <Filter>Form Files\Specialized_Widgets</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FileIO.h">
+      <Filter>Header Files\Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="ProtableFileDialogs.h">
+      <Filter>Header Files\Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="CollectionGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DNA.h">
+      <Filter>Header Files\Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>Header Files\Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomWidget.h">
+      <Filter>Header Files\Libraries</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

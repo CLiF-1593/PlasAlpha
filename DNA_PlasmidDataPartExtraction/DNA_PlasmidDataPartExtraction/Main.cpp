@@ -140,6 +140,7 @@ int main(int argc, char* argv[]) {
 	SetConsoleTextAttribute(hConsole, 7);
 	cout << "> 2023 KSA R&E & IDEV Project" << endl;
 	cout << "> This program was developed to verify that the data were inserted correctly into the recombinant plasmid." << endl << endl;
+	system("Pause");
 
 	if (argc == 2) {
 		string text = FileIO::ReadFileData(argv[1]);
@@ -148,7 +149,6 @@ int main(int argc, char* argv[]) {
 		return 0;
 	}
 
-	system("Pause");
 
 	srand((unsigned)time(NULL));
 	cout << endl;
